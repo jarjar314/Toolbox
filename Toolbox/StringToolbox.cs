@@ -37,9 +37,9 @@ namespace Toolbox
 		{
 			string output = string.Empty;
 			bool start = true;
-			char tmp=' ';
+			char tmp = ' ';
 			int n = input.Length;
-			for (int i = n - 1; i >= 0; i++) {
+			for (int i = n - 1; i >= 0; i--) {
 				if (start) {
 					start = false;
 					tmp = input [i];
@@ -47,12 +47,32 @@ namespace Toolbox
 				}
 				char elem = input [i];
 				if (elem >= tmp) {
+					tmp = elem;
 					continue;
 				}
+				// now we have the last elements that are decreasing and one element that is lower than the last element of the sequence
 
+				string debut = input.Substring (0, i); // the first i elements won't move
+				string end = input.Substring (i + 1); // the end of the form hhggdcbbba
+				Console.WriteLine (debut);
+				Console.WriteLine (elem);
+				Console.WriteLine (end);
 
+				end = reverse (end);
+
+				// abdcba => a c abbd
+
+				for (int j = 0; j < end.Length; j++) {
+					if (end [j] <= elem)
+						continue;
+					end = end [j] + end.Substring (0, j) + elem + end.Substring (j + 1);
+					break;
+				}
+				output = debut + end;
+				break;
 
 			}
+			return output;
 		}
 	}
 }

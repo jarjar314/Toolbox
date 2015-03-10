@@ -7,8 +7,14 @@ namespace Toolbox
 	{
 		public static void Main (string[] args)
 		{
-			TestNumber ();
+			TestNext ();
 			Console.ReadLine ();
+		}
+
+		public static void TestNext ()
+		{
+			string input = "abdcba";
+			Console.WriteLine("next {0} => {1}", input, StringToolbox.next(input));
 		}
 
 		public static void TestNumber ()
